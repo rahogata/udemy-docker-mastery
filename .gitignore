@@ -145,3 +145,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Bindmount sample 1 directory files
+bindmount-sample-1/_posts/2019-08-15-new-page.markdown
+

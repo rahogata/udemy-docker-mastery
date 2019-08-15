@@ -1,1 +1,27 @@
 # create your drupal and postgres config here, based off the last assignment
+version: "3.6"
+
+services:
+  assign2:
+    build: .
+    image: assign2-drupal
+    ports:
+      - "8080:80"
+    volumes:
+      - assign2-modules:/var/www/html/modules
+      - assign2-profiles:/var/www/html/profiles
+      - assign2-sites:/var/www/html/sites
+      - assign2-themes:/var/www/html/themes
+  postgres:
+    image: postgres:9.6.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=mastery
+    volumes:
+      - assign2-data:/var/lib/postgresql/data
+
+volumes:
+  assign2-data:
+  assign2-modules:
+  assign2-profiles:
+  assign2-sites:
+  assign2-themes:
