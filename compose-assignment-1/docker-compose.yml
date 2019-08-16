@@ -1,0 +1,31 @@
+version: "3.6"
+
+services:
+  assignmentcms:
+    image: drupal:8
+    ports:
+      - "8080:80"
+    volumes:
+      - assin-modules:/var/www/html/modules
+      - assin-profiles:/var/www/html/profiles
+      - assin-sites:/var/www/html/sites
+      - assin-themes:/var/www/html/themes
+  postgres:
+    image: postgres:9.6.1-alpine
+    secrets:
+      - assin-data-pwd
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/assin-data-pwd
+    volumes:
+      - assin-data:/var/lib/postgresql/data
+
+volumes:
+  assin-data:
+  assin-modules:
+  assin-profiles:
+  assin-sites:
+  assin-themes:
+
+secrets:
+  assin-data-pwd:
+    external: true
